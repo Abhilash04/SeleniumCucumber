@@ -1,0 +1,27 @@
+2018-11-05 14:00:59 INFO  TestBase:69 - Starting tests on firefox browser.
+2018-11-05 14:01:11 INFO  TestBase:115 - Driver initialization completed.
+2018-11-05 14:01:11 INFO  MainPage:28 - Verifying Main Page Elements.
+2018-11-05 14:01:11 INFO  ReusableFunctions:72 - [[FirefoxDriver: firefox on XP (1bd823c3-35a6-4af5-bca5-9bdc13527c70)] -> xpath: //input[@id='user-message']]: element is displayed.
+2018-11-05 14:01:11 INFO  ReusableFunctions:72 - [[FirefoxDriver: firefox on XP (1bd823c3-35a6-4af5-bca5-9bdc13527c70)] -> xpath: //button[text()='Show Message']]: element is displayed.
+2018-11-05 14:01:12 INFO  ReusableFunctions:72 - [[FirefoxDriver: firefox on XP (1bd823c3-35a6-4af5-bca5-9bdc13527c70)] -> xpath: //input[@id='sum1']]: element is displayed.
+2018-11-05 14:01:12 INFO  ReusableFunctions:72 - [[FirefoxDriver: firefox on XP (1bd823c3-35a6-4af5-bca5-9bdc13527c70)] -> xpath: //input[@id='sum2']]: element is displayed.
+2018-11-05 14:01:12 INFO  ReusableFunctions:72 - [[FirefoxDriver: firefox on XP (1bd823c3-35a6-4af5-bca5-9bdc13527c70)] -> xpath: //button[text()='Get Total']]: element is displayed.
+2018-11-05 14:01:12 INFO  MainPage:38 - All Main Page Elements Displayed.
+2018-11-05 14:01:13 INFO  TestBase:69 - Starting tests on firefox browser.
+2018-11-05 14:01:23 INFO  TestBase:115 - Driver initialization completed.
+2018-11-05 14:01:23 INFO  MainPage:55 - Verifying Valid User Input.
+2018-11-05 14:01:24 INFO  ReusableFunctions:226 - Actual Text From Application Web UI --> :: Welcome Selenium Learner
+2018-11-05 14:01:24 INFO  ReusableFunctions:227 - Expected Text From Application Web UI --> :: Welcome Selenium Learner
+2018-11-05 14:01:24 INFO  ReusableFunctions:230 - ### VERIFICATION TEXT MATCHED !!!
+2018-11-05 14:01:24 INFO  TestBase:69 - Starting tests on firefox browser.
+2018-11-05 14:01:34 INFO  TestBase:115 - Driver initialization completed.
+2018-11-05 14:01:34 INFO  MainPage:75 - Verifying Addition Functionality.
+2018-11-05 14:01:34 INFO  ReusableFunctions:226 - Actual Text From Application Web UI --> :: 15
+2018-11-05 14:01:34 INFO  ReusableFunctions:227 - Expected Text From Application Web UI --> :: 15
+2018-11-05 14:01:34 INFO  ReusableFunctions:230 - ### VERIFICATION TEXT MATCHED !!!
+2018-11-05 14:01:36 INFO  TestBase:69 - Starting tests on firefox browser.
+2018-11-05 14:01:46 INFO  TestBase:115 - Driver initialization completed.
+2018-11-05 14:01:46 INFO  MainPage:75 - Verifying Addition Functionality.
+2018-11-05 14:01:47 INFO  ReusableFunctions:226 - Actual Text From Application Web UI --> :: 11
+2018-11-05 14:01:47 INFO  ReusableFunctions:227 - Expected Text From Application Web UI --> :: 12
+2018-11-05 14:01:47 ERROR ReusableFunctions:233 - ### VERIFICATION TEXT DOES NOT MATCHED !!!

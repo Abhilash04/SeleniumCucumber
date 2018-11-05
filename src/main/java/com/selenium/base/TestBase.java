@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.FileInputStream;
@@ -22,7 +23,7 @@ public class TestBase {
 
     public static WebDriver driver;
     public static Properties prop;
-    static Logger logger;
+    private static Logger logger;
 
     static{
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_hhmmss");
@@ -47,8 +48,8 @@ public class TestBase {
     }
 
     public static void initialization() throws MalformedURLException {
-        String browserName = prop.getProperty("BROWSER");
-        String environment = prop.getProperty("ENVIRONMENT");
+        String browserName = prop.getProperty("browser");
+        String environment = prop.getProperty("environment");
 
         switch (environment) {
 
@@ -60,13 +61,16 @@ public class TestBase {
                         ChromeOptions options = new ChromeOptions();
                         options.addArguments("--start-maximized");
                         options.addArguments("--disable-extensions");
+                        options.addArguments("disable-infobars");
                         driver = new ChromeDriver(options);
                         break;
 
                     case "firefox":
                         logger.info("Starting tests on firefox browser.");
                         System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "//ExternalDrivers//geckodriver.exe");
-                        driver = new FirefoxDriver();
+                        FirefoxOptions ffOptions = new FirefoxOptions();
+                        ffOptions.addPreference("marionette",false);
+                        driver = new FirefoxDriver(ffOptions);
                         break;
 
                     default:
@@ -83,7 +87,7 @@ public class TestBase {
                         options.addArguments("--start-maximized");
                         options.addArguments("--disable-extensions");
                         options.setCapability("platform", "LINUX");
-                        driver = new RemoteWebDriver(new URL(prop.getProperty("SELENIUMSERVER")), options);
+                        driver = new RemoteWebDriver(new URL(prop.getProperty("seleniumGridServer")), options);
                         logger.info("Setting Up Selenium Grid.");
                         break;
 
@@ -105,10 +109,9 @@ public class TestBase {
         }
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Long.parseLong(prop.getProperty("TIMEOUT")), TimeUnit.SECONDS);
-        driver.get(prop.getProperty("URL"));
+        driver.manage().timeouts().pageLoadTimeout(Long.parseLong(prop.getProperty("timeout")), TimeUnit.SECONDS);
+        driver.get(prop.getProperty("appUrl"));
 
         logger.info("Driver initialization completed.");
     }
-
 }

@@ -18,21 +18,12 @@ import java.io.IOException;
 public class CucumberStepDefs extends TestBase {
 
     private static Logger logger = Logger.getLogger(CucumberStepDefs.class.getName());
-    public static MainPage _mainPage;
-    public static SoftAssert _softAssert;
-    public static ReusableFunctions _reusableFunc;
+    private static SoftAssert _softAssert = new SoftAssert();
     private Scenario _scenario;
 
     @Before
     public void initializeScenario(Scenario scenarioInstance){
         this._scenario = scenarioInstance;
-    }
-
-    @Before
-    public void getDriver() throws IOException {
-        _mainPage = new MainPage();
-        _softAssert = new SoftAssert();
-        _reusableFunc = new ReusableFunctions();
     }
 
     @Given("^Launch the demo site$")
@@ -42,7 +33,7 @@ public class CucumberStepDefs extends TestBase {
 
     @Then("^Verify all main screen elements$")
     public void verify_all_main_screen_elements() throws Throwable {
-        if (!_mainPage.verifyMainScreenElements(driver)) {
+        if (!MainPage.verifyMainScreenElements(driver)) {
             _softAssert.fail("Element not present on the page");
         }
         _softAssert.assertAll();
@@ -50,14 +41,14 @@ public class CucumberStepDefs extends TestBase {
 
     @Given("^Verify Valid User Input \"([^\"]*)\"$")
     public void verify_Valid_User_Input(String arg1) throws Throwable {
-        if (!_mainPage.verifyValidUserInput(driver, arg1)) {
+        if (!MainPage.verifyValidUserInput(driver, arg1)) {
             _softAssert.fail("Not a valid user input: " + arg1);
         }
         _softAssert.assertAll();
     }
     @Given("^Verify Valid Addition with numA \"([^\"]*)\" numB \"([^\"]*)\" and expected result \"([^\"]*)\"$")
     public void verify_Valid_Addition_with_numA_numB_and_expected_result(String arg1, String arg2, String arg3) throws Throwable {
-        if (!_mainPage.verifyAdditionFunctionality(driver, arg1, arg2, arg3)) {
+        if (!MainPage.verifyAdditionFunctionality(driver, arg1, arg2, arg3)) {
             _softAssert.fail("Not a valid addition: " + arg3);
         }
         _softAssert.assertAll();

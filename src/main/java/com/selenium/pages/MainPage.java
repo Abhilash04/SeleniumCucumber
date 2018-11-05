@@ -10,20 +10,19 @@ import java.util.ArrayList;
 
 public class MainPage extends TestBase {
 
-    static Logger logger = Logger.getLogger(MainPage.class.getName());
-    ReusableFunctions _reusableFunc = new ReusableFunctions();
+    private static Logger logger = Logger.getLogger(MainPage.class.getName());
 
-    // Web App
+    // Web Elements Main Page
 
-    public final By user_message_input = By.xpath("//input[@id='user-message']");
-    public final By show_message_button = By.xpath("//button[text()='Show Message']");
-    public final By show_message_text = By.xpath("//div[@id='user-message']//following::span[@id='display']");
-    public final By enter_first_value = By.xpath("//input[@id='sum1']");
-    public final By enter_second_value = By.xpath("//input[@id='sum2']");
-    public final By get_total_button = By.xpath("//button[text()='Get Total']");
-    public final By show_total_text = By.xpath("//span[@id='displayvalue']");
+    private static final By user_message_input = By.xpath("//input[@id='user-message']");
+    private static final By show_message_button = By.xpath("//button[text()='Show Message']");
+    private static final By show_message_text = By.xpath("//div[@id='user-message']//following::span[@id='display']");
+    private static final By enter_first_value = By.xpath("//input[@id='sum1']");
+    private static final By enter_second_value = By.xpath("//input[@id='sum2']");
+    private static final By get_total_button = By.xpath("//button[text()='Get Total']");
+    private static final By show_total_text = By.xpath("//span[@id='displayvalue']");
 
-    public boolean verifyMainScreenElements(WebDriver driver) {
+    public static boolean verifyMainScreenElements(WebDriver driver) {
         boolean flag = true;
         try{
             logger.info("Verifying Main Page Elements.");
@@ -35,7 +34,7 @@ public class MainPage extends TestBase {
             locators.add(enter_second_value);
             locators.add(get_total_button);
 
-            if (_reusableFunc.verifyElementsLocated(driver, locators)){
+            if (ReusableFunctions.verifyElementsLocated(locators)){
                 logger.info("All Main Page Elements Displayed.");
             }else {
                 flag = false;
@@ -49,17 +48,17 @@ public class MainPage extends TestBase {
         return flag;
     }
 
-    public boolean verifyValidUserInput(WebDriver driver, String userInput){
+    public static boolean verifyValidUserInput(WebDriver driver, String userInput){
         boolean flag = false;
 
         try {
             logger.info("Verifying Valid User Input.");
 
-            _reusableFunc.enterText(driver, user_message_input, userInput);
-            _reusableFunc.click(driver, show_message_button);
-            String message = _reusableFunc.getTextByInnerText(driver, show_message_text);
+            ReusableFunctions.enterText(user_message_input, userInput);
+            ReusableFunctions.click(show_message_button);
+            String message = ReusableFunctions.getTextByInnerText(show_message_text);
 
-            if (_reusableFunc.verifyTextMatch(driver, message, userInput)){
+            if (ReusableFunctions.verifyTextMatch(message, userInput)){
                 flag = true;
             }
 
@@ -69,18 +68,18 @@ public class MainPage extends TestBase {
         return flag;
     }
 
-    public boolean verifyAdditionFunctionality(WebDriver driver, String numA, String numB, String expected){
+    public static boolean verifyAdditionFunctionality(WebDriver driver, String numA, String numB, String expected){
         boolean flag = false;
 
         try {
             logger.info("Verifying Addition Functionality.");
 
-            _reusableFunc.enterText(driver, enter_first_value, numA);
-            _reusableFunc.enterText(driver, enter_second_value, numB);
-            _reusableFunc.click(driver, get_total_button);
-            String addition = _reusableFunc.getTextByInnerText(driver, show_total_text);
+            ReusableFunctions.enterText(enter_first_value, numA);
+            ReusableFunctions.enterText(enter_second_value, numB);
+            ReusableFunctions.click(get_total_button);
+            String addition = ReusableFunctions.getTextByInnerText(show_total_text);
 
-            if (_reusableFunc.verifyTextMatch(driver, addition, expected)){
+            if (ReusableFunctions.verifyTextMatch(addition, expected)){
                 flag = true;
             }
 
